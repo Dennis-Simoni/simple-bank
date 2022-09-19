@@ -3,7 +3,7 @@ package main
 import (
 	"database/sql"
 	"log"
-	"simplebank/cmd/api"
+	"simplebank/api"
 	db "simplebank/db/sqlc"
 	"simplebank/util"
 
