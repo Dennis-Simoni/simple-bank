@@ -8,7 +8,7 @@ import (
 
 const ab = "abcdefghijklmnopqrstuvwxyz"
 
-func init()  {
+func init() {
 	rand.Seed(time.Now().UnixNano())
 }
 
@@ -34,7 +34,7 @@ func RandomOwner() string {
 }
 
 func RandomCurrency() string {
-	c := []string{"USD", "GBP", "EUR"}
+	c := []string{USD, EUR, GBP}
 	return c[RandomInt(0, 2)]
 }
 
