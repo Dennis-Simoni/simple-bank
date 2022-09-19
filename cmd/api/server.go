@@ -7,18 +7,18 @@ import (
 
 // Server is responsible for handling all http requests to this app
 type Server struct {
-	store  *db.Store
+	store  db.Store
 	router *gin.Engine
 }
 
 // NewServer creates a new http server
-func NewServer(s *db.Store) Server {
+func NewServer(s db.Store) Server {
 	server := Server{store: s}
 	router := gin.Default()
 
 	router.POST("/accounts", server.createAccount)
 	router.PUT("/accounts", server.updateAccount)
-	router.GET("/accounts/", server.getAccounts)
+	router.GET("/accounts", server.getAccounts)
 	router.GET("/accounts/:id", server.getAccount)
 	router.DELETE("/accounts/:id", server.deleteAccount)
 
