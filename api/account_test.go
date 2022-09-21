@@ -36,7 +36,7 @@ func TestCreateAccount(t *testing.T) {
 		Currency: a.Currency,
 	}).Return(a, nil)
 
-	server := NewServer(store)
+	server := newTestServer(t, store)
 	recorder := httptest.NewRecorder()
 
 	reqs := createAccountRequest{
@@ -117,7 +117,7 @@ func TestGetAccount(t *testing.T) {
 			store := mockdb.NewMockStore(ctrl)
 			tt.buildStubs(store)
 
-			server := NewServer(store)
+			server := newTestServer(t, store)
 			recorder := httptest.NewRecorder()
 
 			url := fmt.Sprintf("/accounts/%d", tt.accountID)
