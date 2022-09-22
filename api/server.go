@@ -45,16 +45,18 @@ func (s *Server) setUpRoutes() {
 
 	s.router = gin.Default()
 
-	s.router.POST("/accounts", s.createAccount)
-	s.router.PUT("/accounts", s.updateAccount)
-	s.router.GET("/accounts", s.getAccounts)
-	s.router.GET("/accounts/:id", s.getAccount)
-	s.router.DELETE("/accounts/:id", s.deleteAccount)
-
-	s.router.POST("/transfers", s.createTransfer)
-
 	s.router.POST("/users", s.createUser)
 	s.router.POST("/users/login", s.loginUser)
+
+	authRoutes := s.router.Group("/").Use(authMiddleware(s.tokenMaker))
+
+	authRoutes.POST("/accounts", s.createAccount)
+	authRoutes.PUT("/accounts", s.updateAccount)
+	authRoutes.GET("/accounts", s.getAccounts)
+	authRoutes.GET("/accounts/:id", s.getAccount)
+	authRoutes.DELETE("/accounts/:id", s.deleteAccount)
+
+	authRoutes.POST("/transfers", s.createTransfer)
 }
 
 // Start runs the server on a specific http address
