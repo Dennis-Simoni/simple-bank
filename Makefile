@@ -19,6 +19,9 @@ migratedown:
 migratedown1:
 	migrate -path db/migration/ -database "postgresql://root:secret@localhost:8080/simple_bank?sslmode=disable" -verbose down 1
 
+connectdb:
+	docker exec -it postgres12 psql simple_bank
+
 sqlc:
 	sqlc generate
 
@@ -31,4 +34,4 @@ server:
 mock:
 	 mockgen -package mockdb -destination db/mock/store.go simplebank/db/sqlc Store
 
-.PHONY: postgres createdb dropdb migrateup migrateup1 migratedown migratedown1 sqlc test server mock
+.PHONY: postgres createdb migrateup connectdb dropdb migrateup1 migratedown migratedown1 sqlc test server mock
