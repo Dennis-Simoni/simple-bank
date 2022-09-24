@@ -34,4 +34,7 @@ server:
 mock:
 	 mockgen -package mockdb -destination db/mock/store.go simplebank/db/sqlc Store
 
-.PHONY: postgres createdb migrateup connectdb dropdb migrateup1 migratedown migratedown1 sqlc test server mock
+simplebank:
+	docker compose up -d
+
+.PHONY: postgres createdb migrateup connectdb dropdb migrateup1 migratedown migratedown1 sqlc test server mock simplebank
