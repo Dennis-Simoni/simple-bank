@@ -2,7 +2,7 @@ name: deploy to aws-ecr
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "main" ]
 
 jobs:
   build:
